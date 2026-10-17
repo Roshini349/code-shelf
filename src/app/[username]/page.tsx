@@ -5,14 +5,24 @@ import { notFound } from 'next/navigation';
 import ProjectCard from '@/components/ProjectCard';
 import { Users, MapPin, BookOpen } from 'lucide-react';
 
+
+interface Project {
+    title: string;
+    description: string;
+    techStack: string[];
+    link: string;
+    liveDemo?: string;
+}
+
 interface Member {
     name: string;
     username: string;
     bio: string;
     avatar_url: string;
     skills: string[];
-    projects: any[];
+    projects: Project[];
 }
+
 
 async function getMember(username: string): Promise<Member | undefined> {
   const filePath = path.join(process.cwd(), 'data', 'members.json');
@@ -107,9 +117,9 @@ export default async function ProfilePage({ params }: Props) {
              </div>
 
              <div className="flex flex-col">
-                 {member.projects.map((project: any) => (
-                     <ProjectCard key={project.title} project={project} />
-                 ))}
+                {member.projects.map((project) => (
+    <ProjectCard key={project.title} project={project} />
+))}
              </div>
         </div>
       </div>
