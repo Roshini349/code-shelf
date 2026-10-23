@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Shelf
+
+Code Shelf is a project built with Next.js, React, TypeScript, and Express.
+
+## Tech Stack
+
+- **Frontend:** Next.js, React, TypeScript
+- **Backend:** Express.js, Node.js, TypeScript
+- **Linting:** ESLint
+
+## Prerequisites
+
+Install Node.js and npm before running the project.
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/osl-vvce/code-shelf.git
+cd code-shelf
+npm install
+```
+
+If you are working from a fork, clone your fork's URL instead.
+
+### Run the Frontend
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Run the Express Backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open a second terminal in the project directory and run:
 
-## Learn More
+```bash
+npm run server:dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+The backend runs at [http://localhost:4000](http://localhost:4000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Verify that it is running by opening [http://localhost:4000/api/health](http://localhost:4000/api/health). A successful response contains a status of `ok` and a confirmation message.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Available Scripts
 
-## Deploy on Vercel
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the Next.js development server |
+| `npm run build` | Build the Next.js application |
+| `npm run start` | Start the built Next.js application |
+| `npm run lint` | Run ESLint |
+| `npm run server:dev` | Run the Express backend in watch mode |
+| `npm run server:build` | Compile the Express backend TypeScript |
+| `npm run server:start` | Start the compiled Express backend |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run the compiled backend, first execute `npm run server:build`, then execute `npm run server:start`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```text
+code-shelf/
+├── data/                  # Project data
+├── public/                # Static assets
+├── src/
+│   ├── app/               # Next.js application and API routes
+│   └── components/        # Reusable UI components
+├── server/
+│   ├── index.ts           # Express application entry point
+│   ├── routes/             # Express route modules
+│   ├── tsconfig.json       # Backend TypeScript configuration
+│   └── dist/               # Generated backend build (not committed)
+├── package.json
+└── README.md
+```
+
+The Next.js application and Express backend run as separate processes. Existing Next.js API routes remain part of the Next.js application.
+
+## Contributing
+
+Create a feature branch for your changes, run the relevant lint and build checks, and submit a pull request for review.

@@ -10,7 +10,13 @@ interface Member {
     bio: string;
     avatar_url: string;
     skills: string[];
-    projects: any[];
+    projects: {
+        title: string;
+        description: string;
+        techStack: string[];
+        link: string;
+        liveDemo?: string;
+    }[];
 }
 
 async function getMembers(): Promise<Member[]> {
@@ -24,7 +30,6 @@ export default async function Home() {
 
     return (
         <main className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
-            {/* Page heading */}
             <div className="mb-8 flex flex-wrap items-center gap-3 border-b border-[#d0d7de] pb-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f8fa] text-[#656d76]">
                     <Users size={22} strokeWidth={2} />
@@ -46,7 +51,6 @@ export default async function Home() {
                 </p>
             </div>
 
-            {/* Responsive member grid */}
             {members.length > 0 ? (
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
                     {members.map((member) => (
