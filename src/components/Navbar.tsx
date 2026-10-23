@@ -1,45 +1,81 @@
+
 import Link from 'next/link';
-import { Search, Plus, Menu, Library } from 'lucide-react';
+import { Search, Plus, Menu, Library, ChevronDown } from 'lucide-react';
 
 export default function Navbar() {
-  return (
-    <header className="bg-[#24292f] text-white p-4 flex items-center justify-between sticky top-0 z-50">
-      <div className="flex items-center gap-4">
-        <div className="md:hidden cursor-pointer">
-          <Menu size={24} />
-        </div>
-        <Link href="/" className="font-bold text-xl flex items-center gap-2 hover:text-gray-300 transition-colors">
-          <Library size={32} />
-          <span>Code-Shelf</span>
-        </Link>
-      </div>
+    return (
+        <header className="sticky top-0 z-50 border-b border-[#30363d] bg-[#0d1117] text-[#f0f6fc]">
+            <nav className="mx-auto flex min-h-[68px] max-w-screen-2xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+                {/* Logo and mobile menu */}
+                <div className="flex shrink-0 items-center gap-3">
+                    <button
+                        type="button"
+                        aria-label="Open navigation menu"
+                        className="rounded-md p-2 text-[#8b949e] transition-colors hover:bg-[#21262d] hover:text-white md:hidden"
+                    >
+                        <Menu size={21} />
+                    </button>
 
-      <div className="flex items-center gap-3">
-        <div className="relative hidden md:block">
-          <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
-            <Search size={16} className="text-gray-400" />
-          </div>
-          <input
-            type="text"
-            placeholder="Type / to search"
-            aria-label="Search Code-Shelf"
-            className="bg-[#24292f] border border-gray-500 rounded-md py-1.5 pl-8 pr-12 text-sm text-white placeholder-gray-400 focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all w-64"
-          />
-          <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
-            <span className="text-gray-400 text-xs border border-gray-600 rounded px-1.5">/</span>
-          </div>
-        </div>
+                    <Link
+                        href="/"
+                        aria-label="Code-Shelf home"
+                        className="group flex items-center gap-3"
+                    >
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#484f58] bg-[#21262d] shadow-sm transition-colors group-hover:border-[#8b949e] group-hover:bg-[#30363d]">
+                            <Library
+                                size={22}
+                                strokeWidth={2}
+                                className="text-[#f0f6fc]"
+                            />
+                        </span>
 
-        <Link
-          href="/projects/new"
-          className="flex items-center gap-1 border border-gray-500 rounded-md px-3 py-1.5 text-sm font-medium hover:bg-gray-700 hover:border-gray-400 transition-all"
-        >
-          <Plus size={16} />
-          <span className="hidden md:inline">New Project</span>
-        </Link>
+                        <span className="text-lg font-bold tracking-tight text-[#f0f6fc] sm:text-xl">
+                            Code-Shelf
+                        </span>
+                    </Link>
+                </div>
 
-        <div aria-hidden="true" className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 border border-gray-500 hidden md:block" />
-      </div>
-    </header>
-  );
+                {/* Search */}
+                <div className="hidden min-w-0 max-w-md flex-1 md:block">
+                    <label className="relative block">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#8b949e]">
+                            <Search size={16} />
+                        </span>
+
+                        <input
+                            type="search"
+                            aria-label="Search Code-Shelf"
+                            placeholder="Search Code-Shelf..."
+                            className="w-full rounded-lg border border-[#30363d] bg-[#010409] py-2 pl-10 pr-12 text-sm text-[#f0f6fc] placeholder:text-[#8b949e] transition-all focus:border-[#58a6ff] focus:outline-none focus:ring-2 focus:ring-[#1f6feb]/40"
+                        />
+
+                        <kbd className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                            <span className="rounded border border-[#30363d] px-1.5 py-0.5 text-xs text-[#8b949e]">
+                                /
+                            </span>
+                        </kbd>
+                    </label>
+                </div>
+
+                {/* Actions */}
+                <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+                    <Link
+                        href="/projects"
+                        className="inline-flex items-center gap-2 rounded-lg border border-[#3d444d] bg-[#21262d] px-3 py-2 text-sm font-medium text-[#f0f6fc] shadow-sm transition-colors hover:border-[#8b949e] hover:bg-[#30363d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff]"
+                    >
+                        <Plus size={16} />
+                        <span className="hidden sm:inline">New Project</span>
+                    </Link>
+
+                    <Link
+                        href="/members"
+                        className="inline-flex items-center gap-2 rounded-lg border border-[#3d444d] bg-[#21262d] px-3 py-2 text-sm font-medium text-[#f0f6fc] shadow-sm transition-colors hover:border-[#8b949e] hover:bg-[#30363d]"
+                    >
+                        <span>Explore</span>
+                        <ChevronDown size={15} />
+                    </Link>
+                </div>
+            </nav>
+        </header>
+    );
 }

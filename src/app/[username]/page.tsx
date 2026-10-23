@@ -1,9 +1,10 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import Image from 'next/image';
+
 import { notFound } from 'next/navigation';
 import ProjectCard from '@/components/ProjectCard';
 import { Users, MapPin, BookOpen } from 'lucide-react';
+import ProfileAvatar from '@/components/ProfileAvatar';
 
 
 interface Project {
@@ -46,16 +47,14 @@ export default async function ProfilePage({ params }: Props) {
   return (
     <main className="max-w-screen-xl mx-auto px-4 md:px-6 py-8">
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-1/4 md:-mt-8">
+        <div className="w-full md:w-1/4">
              <div className="md:sticky md:top-24">
-                <div className="relative group">
-                    <Image 
-                        src={member.avatar_url}
-                        alt={member.username}
-                        width={260}
-                        height={260}
-                        className="rounded-full border border-[#d0d7de] w-full max-w-[260px] mx-auto md:mx-0 z-10 relative bg-white"
-                        priority
+                <div className="mb-6 flex justify-center md:justify-start">
+                    <ProfileAvatar
+                        name={member.name}
+                        username={member.username}
+                        avatarUrl={member.avatar_url}
+                    
                     />
                 </div>
                 
